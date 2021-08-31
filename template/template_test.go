@@ -9,7 +9,7 @@ func TestTemplate_ExecuteAlgorithm(t *testing.T) {
 
 	t.Run("Using interfaces", func(t *testing.T) {
 		s := &TemplateImpl{}
-		s1 := &TetsSturct{}
+		s1 := &TestSturct{}
 
 		res := s.ExecuteAlgorithm(s1)
 		expected := "world"

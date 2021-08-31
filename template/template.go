@@ -25,10 +25,10 @@ func (t *TemplateImpl) ExecuteAlgorithm(m MessageRetriever) string {
 	return strings.Join([]string{t.first(), m.Message(), t.third()}, " ")
 }
 
-type TetsSturct struct {
+type TestSturct struct {
 	Template
 }
 
-func (m TetsSturct) Message() string {
+func (m TestSturct) Message() string {
 	return "world"
 }
