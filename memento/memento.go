@@ -2,6 +2,7 @@ package memento
 
 import "fmt"
 
+//Struct to save as Memento
 type State struct {
 	Description string
 }
