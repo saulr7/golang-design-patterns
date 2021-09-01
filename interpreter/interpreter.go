@@ -41,6 +41,24 @@ func Calculate(o string) (int, error) {
 	return int(stack.Pop()), nil
 }
 
+type polishNotationStack []int
+
+func (p *polishNotationStack) Push(s int) {
+	*p = append(*p, s)
+}
+
+func (p *polishNotationStack) Pop() int {
+	length := len(*p)
+
+	if length > 0 {
+		temp := (*p)[length-1]
+		*p = (*p)[:length-1]
+		return temp
+	}
+
+	return 0
+}
+
 func isOperator(o string) bool {
 	if o == SUM || o == SUB || o == DIV || o == MUL {
 		return true
@@ -69,22 +87,4 @@ func getOperationFunc(o string) func(a, b int) int {
 
 	}
 	return nil
-}
-
-type polishNotationStack []int
-
-func (p *polishNotationStack) Push(s int) {
-	*p = append(*p, s)
-}
-
-func (p *polishNotationStack) Pop() int {
-	length := len(*p)
-
-	if length > 0 {
-		temp := (*p)[length-1]
-		*p = (*p)[:length-1]
-		return temp
-	}
-
-	return 0
 }
