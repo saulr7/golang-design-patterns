@@ -55,3 +55,12 @@ func (mf *MessageVisitor) VisitA(m *MessageA) {
 func (mf *MessageVisitor) VisitB(m *MessageB) {
 	m.Msg = fmt.Sprintf("%s %s", m.Msg, "(Visited B)")
 }
+
+type TestHelper struct {
+	Received string
+}
+
+func (t *TestHelper) Write(p []byte) (int, error) {
+	t.Received = string(p)
+	return len(p), nil
+}
