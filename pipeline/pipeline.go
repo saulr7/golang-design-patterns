@@ -2,13 +2,14 @@ package pipeline
 
 func LaunchPipelin(amount int) int {
 
-	firstCh := generator(amount)
-	secondCh := power(firstCh)
-	thirdCh := sum(secondCh)
+	// firstCh := generator(amount)
+	// secondCh := power(firstCh)
+	// thirdCh := sum(secondCh)
 
-	result := <-thirdCh
+	// result := <-thirdCh
 
-	return result
+	// return result
+	return <-sum(power(generator(amount)))
 }
 
 func generator(max int) <-chan int {
