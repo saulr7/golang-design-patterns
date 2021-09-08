@@ -3,6 +3,7 @@ package main
 import (
 	"designpatterns/statregy"
 	"flag"
+	"fmt"
 	"log"
 )
 
@@ -27,5 +28,41 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	s := send()
+	r := receive(s)
+	fmt.Println(<-r)
+
+}
+
+func send() <-chan int {
+
+	out := make(chan int, 10)
+
+	go func() {
+
+		for i := 0; i < 100000; i++ {
+			out <- i
+		}
+		close(out)
+	}()
+
+	return out
+
+}
+func receive(in <-chan int) <-chan int {
+
+	out := make(chan int, 10)
+
+	go func() {
+		var sum int
+		for v := range in {
+			sum += v
+		}
+		out <- sum
+		close(out)
+	}()
+
+	return out
 
 }
